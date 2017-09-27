@@ -11,7 +11,7 @@ using System;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20170919111303_init")]
+    [Migration("20170924023725_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
