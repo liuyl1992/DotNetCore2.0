@@ -1,5 +1,6 @@
 ﻿using Entity.Table;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Service.ProductService
 {
@@ -23,8 +24,31 @@ namespace Service.ProductService
 				Name = "澳洲袋鼠粉",
 			});
 			_unitOfWork.SaveChanges();//提交到数据库
-			var result = repo.GetFirstOrDefault()?.Description ?? string.Empty;
+			var result = repo.Find((long)2).Description;
+			//var result = repo.GetFirstOrDefault()?.Description ?? string.Empty;
 			return result;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public Product GetById(long id)
+		{
+			var repo = _unitOfWork.GetRepository<Product>();
+			return repo.Find(id);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public IEnumerable<Product> GetByQuery(params string[] query)
+		{
+			var repo = _unitOfWork.GetRepository<Product>();
+			return repo.FromSql("select * from Product where Category={0}", query);
 		}
 	}
 }

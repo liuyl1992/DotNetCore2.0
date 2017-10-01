@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Service.ProductService;
+using Entity.Table;
 
 namespace ASP.Net_Core_API.Controllers
 {
@@ -15,7 +16,7 @@ namespace ASP.Net_Core_API.Controllers
 		}
 		// GET api/values
 		[HttpGet]
-		public IEnumerable<string> Get()
+		private IEnumerable<string> Get()
 		{
 			var result = _productService.Test();
 			return new string[] { "value1", result };
@@ -23,9 +24,9 @@ namespace ASP.Net_Core_API.Controllers
 
 		// GET api/values/5
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public Product Get(long id)
 		{
-			return "value";
+			return _productService.GetById(id);
 		}
 
 		// POST api/values
@@ -44,6 +45,14 @@ namespace ASP.Net_Core_API.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
+		}
+
+		// GET api/values/5
+		[HttpGet]
+		[Route("GetList/{category}")]
+		public IEnumerable<Product> GetList(int category)
+		{
+			return _productService.GetByQuery(category.ToString());
 		}
 	}
 }
