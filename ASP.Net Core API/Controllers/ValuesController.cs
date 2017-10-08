@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Service.ProductService;
 using Entity.Table;
 
-namespace ASP.Net_Core_API.Controllers
+namespace ASP.NetCoreAPI.Controllers
 {
 	[Route("api/[controller]")]
 	public class ValuesController : Controller
@@ -42,9 +42,37 @@ namespace ASP.Net_Core_API.Controllers
 		}
 
 		// DELETE api/values/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
+		//[HttpDelete("{id}")]
+		[HttpGet("Delete/{id}")]
+		public bool Delete(long id)
 		{
+			try
+			{
+				_productService.DeleteById(id);
+				return true;
+			}
+			catch (System.Exception ex)
+			{
+				return false;
+			}
+
+		}
+
+		// DELETE api/values/
+		//[HttpDelete]
+		[HttpGet("DeleteAll")]
+		public bool DeleteAll()
+		{
+			try
+			{
+				_productService.DeleteAll();
+				return true;
+			}
+			catch (System.Exception)
+			{
+				return false;
+			}
+
 		}
 
 		// GET api/values/5

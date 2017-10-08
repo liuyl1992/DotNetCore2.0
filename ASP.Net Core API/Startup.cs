@@ -13,7 +13,7 @@ using Entity.Table;
 using DAL;
 using Service.ProductService;
 
-namespace ASP.Net_Core_API
+namespace ASP.NetCoreAPI
 {
 	public class Startup
 	{

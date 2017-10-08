@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Net;
 
-namespace ASP.Net_Core_API
+namespace ASP.NetCoreAPI
 {
 	public class Program
 	{

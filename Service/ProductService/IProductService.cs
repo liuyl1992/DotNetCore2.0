@@ -23,5 +23,9 @@ namespace Service.ProductService
 		/// <returns></returns>
 		IEnumerable<Product> GetByQuery(params string[] query);
 
+		void DeleteById(long id);
+
+		void DeleteAll();
+
 	}
 }

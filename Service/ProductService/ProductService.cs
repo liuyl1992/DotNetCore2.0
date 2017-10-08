@@ -50,5 +50,29 @@ namespace Service.ProductService
 			var repo = _unitOfWork.GetRepository<Product>();
 			return repo.FromSql("select * from Product where Category={0}", query);
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public void DeleteById(long id)
+		{
+			var repo = _unitOfWork.GetRepository<Product>();
+			repo.Delete(id);
+			_unitOfWork.SaveChanges();//提交到数据库
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public void DeleteAll()
+		{
+			var repo = _unitOfWork.GetRepository<Product>();
+			repo.FromSql("delete Product");
+			_unitOfWork.SaveChanges();//提交到数据库
+		}
 	}
 }
