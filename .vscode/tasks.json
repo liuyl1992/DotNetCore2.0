@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/ASP.Net Core API/ASP.Net Core API.csproj"
+                "${workspaceRoot}/ASP.NetCoreAPI/ASP.NetCoreAPI.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"

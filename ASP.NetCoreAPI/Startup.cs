@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
-using Entity.Table;
 using DAL;
 using Service.ProductService;
+using Common;
 
 namespace ASP.NetCoreAPI
 {
@@ -33,6 +27,10 @@ namespace ASP.NetCoreAPI
 			services.AddUnitOfWork<ProductContext>();//添加UnitOfWork支持
 			services.AddScoped(typeof(IProductService), typeof(ProductService));//用ASP.NET Core自带依赖注入(DI)注入使用的类
 			services.AddMvc();
+
+			//配置跨域处理，参考：http://www.cnblogs.com/tianma3798/p/6920704.html;https://docs.microsoft.com/en-us/aspnet/core/security/cors
+			services.AddCors(options => options.AddPolicy(ConstValues.CorsValue,
+			p => p.WithOrigins("https://127.0.0.1:5443", "http://127.0.0.1").AllowAnyMethod().AllowAnyHeader()));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +42,7 @@ namespace ASP.NetCoreAPI
 			}
 
 			app.UseMvc();
+			app.UseCors(ConstValues.CorsValue);
 		}
 	}
 }

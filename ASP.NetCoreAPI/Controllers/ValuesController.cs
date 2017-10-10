@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.ProductService;
 using Entity.Table;
+using Common;
+using Microsoft.AspNetCore.Cors;
 
 namespace ASP.NetCoreAPI.Controllers
 {
@@ -16,6 +18,7 @@ namespace ASP.NetCoreAPI.Controllers
 		}
 		// GET api/values
 		[HttpGet]
+		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
 		private IEnumerable<string> Get()
 		{
 			var result = _productService.Test();
@@ -24,6 +27,7 @@ namespace ASP.NetCoreAPI.Controllers
 
 		// GET api/values/5
 		[HttpGet("{id}")]
+		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
 		public Product Get(long id)
 		{
 			return _productService.GetById(id);
@@ -31,6 +35,7 @@ namespace ASP.NetCoreAPI.Controllers
 
 		// POST api/values
 		[HttpPost]
+		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
 		public void Post([FromBody]string value)
 		{
 		}
@@ -78,6 +83,7 @@ namespace ASP.NetCoreAPI.Controllers
 		// GET api/values/5
 		[HttpGet]
 		[Route("GetList/{category}")]
+		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
 		public IEnumerable<Product> GetList(int category)
 		{
 			return _productService.GetByQuery(category.ToString());
