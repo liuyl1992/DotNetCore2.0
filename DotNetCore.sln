@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2000
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{C1D1586F-DA87-4953-A794-B462C10DA8D6}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{C42C65E9-2EB1-473C-B193-6E6E9647A0DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NetCoreAPI", "ASP.NetCoreAPI\ASP.NetCoreAPI.csproj", "{59CE9771-D91C-400F-A575-37B506C40493}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{EB7A778B-99C0-4373-9FE7-2DE282BA55B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{59CE9771-D91C-400F-A575-37B506C40493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CE9771-D91C-400F-A575-37B506C40493}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59CE9771-D91C-400F-A575-37B506C40493}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB7A778B-99C0-4373-9FE7-2DE282BA55B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB7A778B-99C0-4373-9FE7-2DE282BA55B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB7A778B-99C0-4373-9FE7-2DE282BA55B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB7A778B-99C0-4373-9FE7-2DE282BA55B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
