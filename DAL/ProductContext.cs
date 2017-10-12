@@ -1,4 +1,5 @@
-﻿using Entity.Table;
+﻿using DAL.Mapping;
+using Entity.Table;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,8 @@ namespace DAL
 			//{
 			//}
 			#endregion
-
 			base.OnModelCreating(modelBuilder);
+			modelBuilder.AddEntityConfigurationsFromAssembly(GetType().Assembly);
 		}
 	}
 }

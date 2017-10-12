@@ -2,40 +2,42 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.ProductService;
 using Entity.Table;
-using Common;
 using Microsoft.AspNetCore.Cors;
+using Service;
+using Common.Core;
+using Common;
 
 namespace ASP.NetCoreAPI.Controllers
 {
-	[Route("api/[controller]")]
-	public class ValuesController : Controller
+	public class ValuesController : BaseChaunceController
 	{
 		private IProductService _productService;
+		private ITestService _testService;
 
-		public ValuesController(IProductService productService)
+		public ValuesController(IProductService productService
+			, ITestService testService)
 		{
 			_productService = productService;
+			_testService = testService;
 		}
 		// GET api/values
 		[HttpGet]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
-		private IEnumerable<string> Get()
+		public IActionResult Get()
 		{
 			var result = _productService.Test();
-			return new string[] { "value1", result };
+			var result1 = _testService.Test();
+			return SendResult(ErrorCode.OK, new { result, result1 });
 		}
 
 		// GET api/values/5
 		[HttpGet("{id}")]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
-		public Product Get(long id)
+		public IActionResult Get(long id)
 		{
-			return _productService.GetById(id);
+			return SendResult(ErrorCode.OK, _productService.GetById(id));
 		}
 
 		// POST api/values
 		[HttpPost]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
 		public void Post([FromBody]string value)
 		{
 		}
@@ -83,10 +85,10 @@ namespace ASP.NetCoreAPI.Controllers
 		// GET api/values/5
 		[HttpGet]
 		[Route("GetList/{category}")]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
-		public IEnumerable<Product> GetList(int category)
+		public IActionResult GetList(int category)
 		{
-			return _productService.GetByQuery(category.ToString());
+			var result = _productService.GetByQuery(category.ToString());
+			return SendResult(ErrorCode.OK, result);
 		}
 	}
 }
