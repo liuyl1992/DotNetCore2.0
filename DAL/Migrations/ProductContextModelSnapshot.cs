@@ -25,6 +25,10 @@ namespace DAL.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
                     b.Property<int>("Category");
 
                     b.Property<DateTime>("CreteTime");
@@ -39,10 +43,14 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
+                    b.Property<int>("New");
+
                     b.Property<decimal>("Price");
 
                     b.Property<DateTime>("RowVersion")
                         .IsConcurrencyToken();
+
+                    b.Property<int>("Sale");
 
                     b.HasKey("Id");
 

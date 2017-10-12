@@ -19,6 +19,13 @@ namespace Entity.Table
 		[Required]
 		public string Name { get; set; }
 
+        /// <summary>
+		/// 品牌
+		/// </summary>
+		[StringLength(20)]
+		[Required]
+		public string Brand { get; set; }
+
 		/// <summary>
 		/// 描述
 		/// </summary>
@@ -43,5 +50,17 @@ namespace Entity.Table
 		/// </summary>
 		[Required]
 		public decimal Discount { get; set; }
+
+		/// <summary>
+		/// New
+		/// </summary>
+		[Required]
+		public int New { get; set; }
+
+		/// <summary>
+		/// Sale
+		/// </summary>
+		[Required]
+		public int Sale { get; set; }
 	}
 }

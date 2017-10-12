@@ -18,10 +18,12 @@ namespace Service.ProductService
 			repo.Insert(new Product
 			{
 				Category = 1,
-				Description = "此商品为澳洲代购,买不了吃亏买不了上当",
+				Name = "name",
+				Brand = "brand",
+				Description = "description",
 				Discount = (decimal)899.21,
 				Price = (decimal)98.2,
-				Name = "澳洲袋鼠粉",
+				
 			});
 			_unitOfWork.SaveChanges();//提交到数据库
 			var result = repo.Find((long)2).Description;

@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Service.ProductService;
 using Entity.Table;
-using Common;
 using Microsoft.AspNetCore.Cors;
 
 namespace ASP.NetCoreAPI.Controllers
 {
+	[EnableCors("CorsPolicy")]
 	[Route("api/[controller]")]
 	public class ValuesController : Controller
 	{
@@ -18,16 +18,16 @@ namespace ASP.NetCoreAPI.Controllers
 		}
 		// GET api/values
 		[HttpGet]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
-		private IEnumerable<string> Get()
+		[EnableCors("CorsPolicy")] //设置跨域处理的 代理
+		public IEnumerable<string> Get()
 		{
 			var result = _productService.Test();
 			return new string[] { "value1", result };
 		}
 
-		// GET api/values/5
+		// GET api/values/5  通过id查询
 		[HttpGet("{id}")]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
+		[EnableCors("CorsPolicy")]//设置跨域处理的 代理
 		public Product Get(long id)
 		{
 			return _productService.GetById(id);
@@ -35,20 +35,22 @@ namespace ASP.NetCoreAPI.Controllers
 
 		// POST api/values
 		[HttpPost]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
+		[EnableCors("CorsPolicy")]//设置跨域处理的 代理
 		public void Post([FromBody]string value)
 		{
 		}
 
 		// PUT api/values/5
 		[HttpPut("{id}")]
+		[EnableCors("CorsPolicy")] //设置跨域处理的 代理
 		public void Put(int id, [FromBody]string value)
 		{
 		}
 
-		// DELETE api/values/5
+		// DELETE api/values/5  
 		//[HttpDelete("{id}")]
 		[HttpGet("Delete/{id}")]
+		[EnableCors("CorsPolicy")] //设置跨域处理的 代理
 		public bool Delete(long id)
 		{
 			try
@@ -66,6 +68,7 @@ namespace ASP.NetCoreAPI.Controllers
 		// DELETE api/values/
 		//[HttpDelete]
 		[HttpGet("DeleteAll")]
+		[EnableCors("CorsPolicy")] //设置跨域处理的 代理
 		public bool DeleteAll()
 		{
 			try
@@ -80,10 +83,10 @@ namespace ASP.NetCoreAPI.Controllers
 
 		}
 
-		// GET api/values/5
+		// GET api/values/5  通过category查询
 		[HttpGet]
 		[Route("GetList/{category}")]
-		[EnableCors(ConstValues.CorsValue)] //设置跨域处理的 代理
+		[EnableCors("CorsPolicy")] //设置跨域处理的 代理
 		public IEnumerable<Product> GetList(int category)
 		{
 			return _productService.GetByQuery(category.ToString());
