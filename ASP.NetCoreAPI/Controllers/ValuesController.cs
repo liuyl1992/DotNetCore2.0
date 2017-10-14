@@ -9,7 +9,7 @@ using Common;
 
 namespace ASP.NetCoreAPI.Controllers
 {
-	public class ValuesController : BaseChaunceController
+	public class ValuesController : BaseApiController
 	{
 		private IProductService _productService;
 		private ITestService _testService;
