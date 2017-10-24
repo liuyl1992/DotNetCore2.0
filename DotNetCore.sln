@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2000
+VisualStudioVersion = 15.0.27009.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{C1D1586F-DA87-4953-A794-B462C10DA8D6}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NetCoreAPI", "ASP.NetCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{EB7A778B-99C0-4373-9FE7-2DE282BA55B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NetCoreMVC", "ASP.NetCoreMVC\ASP.NetCoreMVC.csproj", "{0CD47A79-4772-463A-803F-D8DDE7089B78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NetCoreMVC", "ASP.NetCoreMVC\ASP.NetCoreMVC.csproj", "{0CD47A79-4772-463A-803F-D8DDE7089B78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Extensitions", "ApplicationManager\Identity.Extensitions.csproj", "{EE18A1CC-5C9F-4C63-921E-BE612028264D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{0CD47A79-4772-463A-803F-D8DDE7089B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CD47A79-4772-463A-803F-D8DDE7089B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD47A79-4772-463A-803F-D8DDE7089B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE18A1CC-5C9F-4C63-921E-BE612028264D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE18A1CC-5C9F-4C63-921E-BE612028264D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE18A1CC-5C9F-4C63-921E-BE612028264D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE18A1CC-5C9F-4C63-921E-BE612028264D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

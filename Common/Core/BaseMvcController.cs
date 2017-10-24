@@ -7,7 +7,6 @@ using System.Text;
 
 namespace Common.Core
 {
-	[Route("[controller]/[action]")]
 	public abstract class BaseMvcController : Controller
 	{
     }

@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using ASP.NetCoreMVC.Models;
 using ASP.NetCoreMVC.Models.ManageViewModels;
 using ASP.NetCoreMVC.Services;
 using Common.Core;
+using Identity.Extensitions.Model;
 
 namespace ASP.NetCoreMVC.Controllers
 {
     [Authorize]
-    public class ManageController : BaseMvcController
+	[Route("[controller]/[action]")]
+	public class ManageController : BaseMvcController
 	{
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -121,7 +121,7 @@ namespace ASP.NetCoreMVC.Controllers
             }
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+            var callbackUrl = Url.EmailConfirmationLink(user.Id.ToString(), code, Request.Scheme);
             var email = user.Email;
             await _emailSender.SendEmailConfirmationAsync(email, callbackUrl);
 
@@ -266,7 +266,7 @@ namespace ASP.NetCoreMVC.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var info = await _signInManager.GetExternalLoginInfoAsync(user.Id);
+            var info = await _signInManager.GetExternalLoginInfoAsync(user.Id.ToString());
             if (info == null)
             {
                 throw new ApplicationException($"Unexpected error occurred loading external login info for user with ID '{user.Id}'.");

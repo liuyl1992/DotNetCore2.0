@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NetCoreMVC.Controllers
 {
+	/// <summary>
+	/// 此处不能指定Route，否则默认ip无法映射到默认的此Controller
+	/// </summary>
 	public class HomeController : BaseMvcController
 	{
         public IActionResult Index()

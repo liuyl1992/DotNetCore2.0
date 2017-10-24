@@ -14,6 +14,8 @@ using DAL;
 using System.Reflection;
 using Service;
 using Common.Const;
+using Identity.Extensitions.Model;
+using Microsoft.AspNetCore.Identity;
 
 namespace ASP.NetCoreAPI
 {
@@ -31,7 +33,11 @@ namespace ASP.NetCoreAPI
 		{
 			services.AddDbContext<ProductContext>(options =>
 				options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));//添加Mysql支持
-																						//集中注册服务
+
+			services.AddDbContext<ApplicationDbContext>(options =>
+				options.UseMySql(Configuration.GetConnectionString("MySqlUserConnection")));
+
+			//集中注册服务
 			foreach (var item in GetClassName("Service"))
 			{
 				foreach (var typeArray in item.Value)
@@ -40,6 +46,11 @@ namespace ASP.NetCoreAPI
 				}
 			}
 			services.AddUnitOfWork<ProductContext>();//添加UnitOfWork支持
+
+			services.AddIdentity<ApplicationUser, CustomRole>()
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultTokenProviders();
+
 			services.AddMvc();
 
 			//配置跨域处理，参考：

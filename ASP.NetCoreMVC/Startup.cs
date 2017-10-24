@@ -8,27 +8,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ASP.NetCoreMVC.Data;
 using ASP.NetCoreMVC.Models;
 using ASP.NetCoreMVC.Services;
 using System.Reflection;
 using DAL;
+using Identity.Extensitions.Model;
 
 namespace ASP.NetCoreMVC
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));//添加Mysql支持
 
 			foreach (var item in GetClassName("Service"))
@@ -41,41 +41,42 @@ namespace ASP.NetCoreMVC
 
 			services.AddUnitOfWork<ProductContext>();//添加UnitOfWork支持
 
-			services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+			services.AddIdentity<ApplicationUser, CustomRole>()
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultTokenProviders();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+			// Add application services.
+			services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
-        }
+			services.AddMvc();
+		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				app.UseBrowserLink();
+				app.UseDatabaseErrorPage();
+			}
+			else
+			{
+				app.UseExceptionHandler("/Home/Error");
+			}
 
-            app.UseStaticFiles();
+			app.UseStaticFiles();
 
-            app.UseAuthentication();
+			app.UseAuthentication();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
+			app.UseMvc(routes =>
+			{
+				routes.MapRoute(
+					name: "default",
+					template: "{controller}/{action}/{id?}",
+					defaults: new { controller = "Home", action = "Index" });
+			});
+		}
 
 
 		/// <summary>  
