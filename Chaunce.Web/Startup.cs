@@ -8,13 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ASP.NetCoreMVC.Models;
-using ASP.NetCoreMVC.Services;
+using Chaunce.Web.Services;
+using Identity.Extensitions.Model;
 using System.Reflection;
 using DAL;
-using Identity.Extensitions.Model;
 
-namespace ASP.NetCoreMVC
+namespace Chaunce.Web
 {
 	public class Startup
 	{
@@ -29,7 +28,7 @@ namespace ASP.NetCoreMVC
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<ApplicationDbContext>(options =>
-				options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));//添加Mysql支持
+				options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
 
 			foreach (var item in GetClassName("Service"))
 			{
@@ -45,13 +44,14 @@ namespace ASP.NetCoreMVC
 				.AddEntityFrameworkStores<ApplicationDbContext>()
 				.AddDefaultTokenProviders();
 
+			#region
 			services.Configure<IdentityOptions>(options =>
 			{
 				// Password settings
-				options.Password.RequireDigit = true;
+				options.Password.RequireDigit = false;
 				options.Password.RequiredLength = 8;
 				options.Password.RequireNonAlphanumeric = false;
-				options.Password.RequireUppercase = true;
+				options.Password.RequireUppercase = false;
 				options.Password.RequireLowercase = false;
 				options.Password.RequiredUniqueChars = 6;
 
@@ -74,7 +74,7 @@ namespace ASP.NetCoreMVC
 				options.AccessDeniedPath = "/Account/AccessDenied"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
 				options.SlidingExpiration = true;
 			});
-
+			#endregion
 
 			// Add application services.
 			services.AddTransient<IEmailSender, EmailSender>();
@@ -108,7 +108,6 @@ namespace ASP.NetCoreMVC
 					defaults: new { controller = "Home", action = "Index" });
 			});
 		}
-
 
 		/// <summary>  
 		/// 获取程序集中的实现类对应的多个接口

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27009.1
+VisualStudioVersion = 15.0.27019.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{C1D1586F-DA87-4953-A794-B462C10DA8D6}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NetCoreMVC", "ASP.NetCoreMVC\ASP.NetCoreMVC.csproj", "{0CD47A79-4772-463A-803F-D8DDE7089B78}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Extensitions", "ApplicationManager\Identity.Extensitions.csproj", "{EE18A1CC-5C9F-4C63-921E-BE612028264D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chaunce.Web", "Chaunce.Web\Chaunce.Web.csproj", "{5DD8CC78-F468-41F5-8ADA-1A2E39565649}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{EE18A1CC-5C9F-4C63-921E-BE612028264D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE18A1CC-5C9F-4C63-921E-BE612028264D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE18A1CC-5C9F-4C63-921E-BE612028264D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DD8CC78-F468-41F5-8ADA-1A2E39565649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD8CC78-F468-41F5-8ADA-1A2E39565649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD8CC78-F468-41F5-8ADA-1A2E39565649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD8CC78-F468-41F5-8ADA-1A2E39565649}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

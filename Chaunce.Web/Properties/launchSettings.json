@@ -1,0 +1,43 @@
+{
+	"iisSettings": {
+		"windowsAuthentication": false,
+		"anonymousAuthentication": true,
+		"iisExpress": {
+			"applicationUrl": "http://localhost:50820/",
+			"sslPort": 44385
+		}
+	},
+	"profiles": {
+		"IIS Express": {
+			"commandName": "IISExpress",
+			"launchBrowser": true,
+			"launchUrl": "https://localhost:44385/",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			}
+		},
+		"Chaunce.Web(Staging)": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Staging"
+			},
+			"applicationUrl": "http://127.0.0.1:666/"
+		},
+		"Chaunce.Web(Development)": {
+			"commandName": "Project",
+			"launchBrowser": true,
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"applicationUrl": "http://localhost:666/"
+		},
+		"Chaunce.Web(Production)": {
+			"commandName": "Project",
+			"launchBrowser": true,
+					"environmentVariables": {
+						"ASPNETCORE_ENVIRONMENT": "Production"
+					},"applicationUrl": "http://localhost:666/"
+		}
+	}
+}
