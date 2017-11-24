@@ -20,7 +20,7 @@ namespace Chaunce.Web
 		public static IWebHost BuildWebHost(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
 				.UseStartup<Startup>()
-				.UseKestrel(SetKestrel.SetHost)//启用Kestrel
+				//.UseKestrel(SetKestrel.SetHost)//启用Kestrel
 				.Build();
 	}
 }
