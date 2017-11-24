@@ -22,7 +22,7 @@
 			"environmentVariables": {
 				"ASPNETCORE_ENVIRONMENT": "Staging"
 			},
-			"applicationUrl": "http://127.0.0.1:666/"
+			"applicationUrl": "http://127.0.0.1:600/"
 		},
 		"Chaunce.Web(Development)": {
 			"commandName": "Project",
@@ -37,7 +37,7 @@
 			"launchBrowser": true,
 					"environmentVariables": {
 						"ASPNETCORE_ENVIRONMENT": "Production"
-					},"applicationUrl": "http://localhost:666/"
+					},"applicationUrl": "http://localhost:555/"
 		}
 	}
 }
