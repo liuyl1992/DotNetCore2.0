@@ -96,7 +96,23 @@ namespace Chaunce.Web
 				app.UseExceptionHandler("/Home/Error");
 			}
 
-			app.UseStaticFiles();
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				OnPrepareResponse = context =>
+				{
+					//context.Context.Response.Headers.Add("cache-control", new[] { "public,no-cache" });
+					//以下操作是UseStaticFiles内部默认实现
+					//Cache static file for 1 year
+					if (!string.IsNullOrEmpty(context.Context.Request.Query["v"]))//资源添加asp-append-version="true"后v是查询参数
+					{
+						context.Context.Response.Headers.Add("cache-control", new[] { "public,max-age=31536000" });
+
+						context.Context.Response.Headers.Add("Expires", new[] { DateTime.UtcNow.AddYears(1).ToString("R") }); // Format RFC1123
+					}
+				}
+			});
+			
+			//app.UseStaticFiles();
 
 			app.UseAuthentication();
 
@@ -125,6 +141,39 @@ namespace Chaunce.Web
 				{
 					var interfaceType = item.GetInterfaces();
 					result.Add(item, interfaceType);
+				}
+				return result;
+			}
+			return new Dictionary<Type, Type[]>();
+		}
+		
+		/// <summary>
+		/// 一个接口对应多个实现
+		/// </summary>
+		/// <param name="assemblyName"></param>
+		/// <returns></returns>
+		public Dictionary<Type, Type[]> GetName(string assemblyName)
+		{
+			if (!String.IsNullOrEmpty(assemblyName))
+			{
+				Assembly assembly = Assembly.Load(assemblyName);
+				List<Type> ts = assembly.GetTypes().ToList();
+
+				var result = new Dictionary<Type, Type[]>();
+				//找出所有接口
+				foreach (var item in ts.Where(s => s.IsInterface))
+				{
+					var instances = new List<Type>();
+					 var instance= ts.Where(s => !s.IsInterface);
+					foreach (var inter in instance)
+					{
+						if (item.IsAssignableFrom(inter))
+						{
+							instances.Add(inter);
+						}
+					}
+					result.Add(item, instances.ToArray());
+
 				}
 				return result;
 			}
